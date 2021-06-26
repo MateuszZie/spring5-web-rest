@@ -1,0 +1,29 @@
+package org.mateuszziebura.spring5webrest.services;
+
+import lombok.RequiredArgsConstructor;
+import org.mateuszziebura.spring5webrest.domain.Customer;
+import org.mateuszziebura.spring5webrest.repositories.CustomerRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+@Service
+@RequiredArgsConstructor
+public class CustomerServiceImpl implements CustomerService {
+
+    private final CustomerRepository customerRepository;
+
+    @Override
+    public Customer findCustomerById(Long id) {
+        return customerRepository.findById(id).get();
+    }
+
+    @Override
+    public List<Customer> findAllCustomers() {
+        return customerRepository.findAll();
+    }
+
+    @Override
+    public Customer saveCustomer(Customer customer) {
+        return customerRepository.save(customer);
+    }
+}
